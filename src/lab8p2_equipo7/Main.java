@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package lab8p2_equipo7;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -19,6 +18,9 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        as.cargarArchivo();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -51,13 +53,36 @@ public class Main extends javax.swing.JFrame {
         jt_raza = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jb_crearSerVivo = new javax.swing.JButton();
+        jd_modificarSerVivo = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jt_nombreSer1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jt_IDSer1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        js_poder1 = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        js_anios1 = new javax.swing.JSpinner();
+        jt_raza1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jc_serVivo = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jc_universos1 = new javax.swing.JComboBox<>();
+        jb_modificarSerVivo = new javax.swing.JButton();
+        jd_eliminarSerVivo = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        FieldBuscarElimSerVivo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JListElimSeres = new javax.swing.JList<>();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BtnModifVivo = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(51, 0, 51));
@@ -132,6 +157,11 @@ public class Main extends javax.swing.JFrame {
         jLabel8.setText("Agregar ser vivo");
 
         jb_crearSerVivo.setText("Crear");
+        jb_crearSerVivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crearSerVivoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -209,6 +239,181 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel5.setBackground(new java.awt.Color(51, 0, 153));
+
+        jLabel9.setText("Nombre");
+
+        jLabel10.setText("ID");
+
+        jLabel11.setText("Poder");
+
+        js_poder1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+
+        jLabel12.setText("Años");
+
+        js_anios1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel13.setText("Raza");
+
+        jLabel14.setText("Universo de procedencia");
+
+        jc_serVivo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jc_serVivoItemStateChanged(evt);
+            }
+        });
+
+        jLabel15.setText("Elegir ser vivo");
+
+        jc_universos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jb_modificarSerVivo.setText("Modificar");
+        jb_modificarSerVivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_modificarSerVivoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jc_universos1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel15)
+                        .addGap(38, 38, 38)
+                        .addComponent(jc_serVivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jb_modificarSerVivo)))
+                .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel12))
+                    .addGap(34, 34, 34)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jt_nombreSer1)
+                        .addComponent(jt_IDSer1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                        .addComponent(js_poder1)
+                        .addComponent(js_anios1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addComponent(jt_raza1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(24, 24, 24)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jc_serVivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(71, 71, 71)
+                .addComponent(jc_universos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(jb_modificarSerVivo)
+                .addGap(26, 26, 26))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(82, 82, 82)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel14)
+                        .addComponent(jt_nombreSer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(33, 33, 33)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jt_IDSer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(42, 42, 42)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel13)
+                        .addComponent(js_poder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jt_raza1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(js_anios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(82, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jd_modificarSerVivoLayout = new javax.swing.GroupLayout(jd_modificarSerVivo.getContentPane());
+        jd_modificarSerVivo.getContentPane().setLayout(jd_modificarSerVivoLayout);
+        jd_modificarSerVivoLayout.setHorizontalGroup(
+            jd_modificarSerVivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_modificarSerVivoLayout.setVerticalGroup(
+            jd_modificarSerVivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel6.setBackground(new java.awt.Color(51, 0, 153));
+
+        FieldBuscarElimSerVivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                FieldBuscarElimSerVivoKeyReleased(evt);
+            }
+        });
+
+        JListElimSeres.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(JListElimSeres);
+
+        jButton5.setText("jButton5");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(FieldBuscarElimSerVivo)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(153, 153, 153))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(FieldBuscarElimSerVivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(31, 31, 31))
+        );
+
+        javax.swing.GroupLayout jd_eliminarSerVivoLayout = new javax.swing.GroupLayout(jd_eliminarSerVivo.getContentPane());
+        jd_eliminarSerVivo.getContentPane().setLayout(jd_eliminarSerVivoLayout);
+        jd_eliminarSerVivoLayout.setHorizontalGroup(
+            jd_eliminarSerVivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_eliminarSerVivoLayout.setVerticalGroup(
+            jd_eliminarSerVivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -247,7 +452,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(42, 42, 42)
                 .addComponent(jButton2)
-                .addGap(53, 53, 53)
+                .addGap(47, 47, 47)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -261,9 +466,19 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Modificar Ser Vivo");
+        BtnModifVivo.setText("Modificar Ser Vivo");
+        BtnModifVivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModifVivoActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Eliminar Ser VIvo");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -278,7 +493,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jButton4))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(88, 88, 88)
-                            .addComponent(jButton5))))
+                            .addComponent(BtnModifVivo))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -287,7 +502,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(93, 93, 93)
                 .addComponent(jButton4)
                 .addGap(42, 42, 42)
-                .addComponent(jButton5)
+                .addComponent(BtnModifVivo)
                 .addGap(53, 53, 53)
                 .addComponent(jButton6)
                 .addContainerGap(119, Short.MAX_VALUE))
@@ -319,21 +534,115 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if(jt_univName.getText()!= ""){
+        if (jt_univName.getText() != "") {
             Universo u = new Universo(jt_univName.getText());
             universos.add(u);
             JOptionPane.showMessageDialog(jd_crearUniverso, "Universo creado exitosamente");
-        
+            jd_crearUniverso.dispose();
+            jt_univName.setText("");
+
+            adminUniversos au = new adminUniversos("./Universo/" + u.getNombre() + ".uni");
+            au.cargarArchivo();
+            au.setListaUniversos(universos);
+            au.escribirArchivo();
+
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        refreshComboBoxUniverso();
-        jd_crearSerVivo.setModal(true);
-        jd_crearSerVivo.pack();
-        jd_crearSerVivo.setLocationRelativeTo(this);
-        jd_crearSerVivo.setVisible(true);
+        if (universos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No existen universos para añadir seres vivos");
+        } else {
+            refreshComboBoxUniverso();
+            jd_crearSerVivo.setModal(true);
+            jd_crearSerVivo.pack();
+            jd_crearSerVivo.setLocationRelativeTo(this);
+            jd_crearSerVivo.setVisible(true);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jb_crearSerVivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearSerVivoActionPerformed
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jc_universos.getModel();
+        Universo u = (Universo) modelo.getSelectedItem();
+        Universo uni = (Universo) jc_universos.getSelectedItem();
+
+        SeresVivos sv = new SeresVivos(jt_nombreSer.getText(), jt_IDSer.getText(), jt_raza.getText(),
+                (Integer) js_poder.getValue(), (Integer) js_anios.getValue(), uni);
+        as.getListaSeres().add(sv);
+        u.getCitizens().add(sv);
+        JOptionPane.showMessageDialog(jd_crearUniverso, "Universo creado exitosamente");
+        jd_crearUniverso.dispose();
+
+//        as.setListaSeres(as.getListaSeres());
+        //as.setSer(sv);
+        as.escribirArchivo();
+
+        jt_nombreSer.setText("");
+        jt_IDSer.setText("");
+        jt_raza.setText("");
+        js_poder.setValue(1);
+        js_anios.setValue(1);
+
+    }//GEN-LAST:event_jb_crearSerVivoActionPerformed
+
+    private void BtnModifVivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModifVivoActionPerformed
+        refreshComboBoxSerVivo(as);
+        refreshComboBoxUniverso1();
+//        SeresVivos primerSer = (SeresVivos) jc_serVivo.getSelectedItem();
+//        jc_universos1.setSelectedItem(primerSer.getUniverso());
+
+        jd_modificarSerVivo.setModal(true);
+        jd_modificarSerVivo.pack();
+        jd_modificarSerVivo.setLocationRelativeTo(this);
+        jd_modificarSerVivo.setVisible(true);
+    }//GEN-LAST:event_BtnModifVivoActionPerformed
+
+    private void jc_serVivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jc_serVivoItemStateChanged
+
+        if (jc_serVivo.getSelectedIndex() >= 0) {
+            SeresVivos sv = (SeresVivos) jc_serVivo.getSelectedItem();
+            jt_nombreSer1.setText(sv.getNombre());
+            jt_IDSer1.setText(sv.getID());
+            jt_raza1.setText(sv.getRaza());
+            js_poder1.setValue(sv.getPoder());
+            js_anios1.setValue(sv.getAnios());
+            jc_universos1.setSelectedItem(sv.getUniverso());
+        }
+    }//GEN-LAST:event_jc_serVivoItemStateChanged
+
+    private void jb_modificarSerVivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarSerVivoActionPerformed
+        SeresVivos sv = (SeresVivos) jc_serVivo.getSelectedItem();
+
+        sv.setNombre(jt_nombreSer1.getText());
+        sv.setID(jt_IDSer1.getText());
+        sv.setAnios((Integer) js_anios.getValue());
+        sv.setPoder((Integer) js_poder1.getValue());
+        sv.setUniverso((Universo) jc_universos1.getSelectedItem());
+        sv.setRaza(jt_raza1.getText());
+
+        JOptionPane.showMessageDialog(this, "Ser vivo modificado exitosamente");
+//        as.setListaSeres(seresVivos);
+//as.setSer(sv);
+        as.escribirArchivo();
+    }//GEN-LAST:event_jb_modificarSerVivoActionPerformed
+
+    private void FieldBuscarElimSerVivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldBuscarElimSerVivoKeyReleased
+
+        DefaultListModel modelo = new DefaultListModel();
+        for (SeresVivos s : as.getListaSeres()) {
+            if (s.getNombre().startsWith(FieldBuscarElimSerVivo.getText())) {
+                modelo.addElement(s);
+            }
+        }
+        JListElimSeres.setModel(modelo);
+    }//GEN-LAST:event_FieldBuscarElimSerVivoKeyReleased
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jd_eliminarSerVivo.setModal(true);
+        jd_eliminarSerVivo.pack();
+        jd_eliminarSerVivo.setLocationRelativeTo(this);
+        jd_eliminarSerVivo.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,8 +678,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void refreshComboBoxUniverso(){
+
+    public void refreshComboBoxUniverso() {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jc_universos.getModel();
         modelo.removeAllElements();
         for (Universo u : universos) {
@@ -379,7 +688,28 @@ public class Main extends javax.swing.JFrame {
         jc_universos.setModel(modelo);
     }
 
+    public void refreshComboBoxSerVivo(adminSeres a) {
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jc_serVivo.getModel();
+        modelo.removeAllElements();
+        for (SeresVivos sv : a.getListaSeres()) {
+            modelo.addElement(sv);
+        }
+        jc_serVivo.setModel(modelo);
+    }
+
+    public void refreshComboBoxUniverso1() {
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jc_universos1.getModel();
+        modelo.removeAllElements();
+        for (Universo u : universos) {
+            modelo.addElement(u);
+        }
+        jc_universos1.setModel(modelo);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnModifVivo;
+    private javax.swing.JTextField FieldBuscarElimSerVivo;
+    private javax.swing.JList<String> JListElimSeres;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -388,6 +718,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -395,21 +731,38 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_crearSerVivo;
+    private javax.swing.JButton jb_modificarSerVivo;
+    private javax.swing.JComboBox<String> jc_serVivo;
     private javax.swing.JComboBox<String> jc_universos;
+    private javax.swing.JComboBox<String> jc_universos1;
     private javax.swing.JDialog jd_crearSerVivo;
     private javax.swing.JDialog jd_crearUniverso;
+    private javax.swing.JDialog jd_eliminarSerVivo;
+    private javax.swing.JDialog jd_modificarSerVivo;
     private javax.swing.JSpinner js_anios;
+    private javax.swing.JSpinner js_anios1;
     private javax.swing.JSpinner js_poder;
+    private javax.swing.JSpinner js_poder1;
     private javax.swing.JTextField jt_IDSer;
+    private javax.swing.JTextField jt_IDSer1;
     private javax.swing.JTextField jt_nombreSer;
+    private javax.swing.JTextField jt_nombreSer1;
     private javax.swing.JTextField jt_raza;
+    private javax.swing.JTextField jt_raza1;
     private javax.swing.JTextField jt_univName;
     // End of variables declaration//GEN-END:variables
 
     public ArrayList<Universo> universos = new ArrayList();
+
+    public adminSeres as = new adminSeres("./seres.sre");
+
 }

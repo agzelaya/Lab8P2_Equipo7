@@ -1,6 +1,8 @@
 package lab8p2_equipo7;
 
-public class SeresVivos {
+import java.io.Serializable;
+
+public class SeresVivos implements Serializable{
     private String nombre, ID, raza;
     private int poder, anios;
     private Universo universo;
@@ -69,6 +71,7 @@ public class SeresVivos {
     public String toString() {
         return nombre;
     }
+    
     
     
 }

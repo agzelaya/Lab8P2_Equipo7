@@ -42,6 +42,9 @@ public class adminSeres {
     public void setArchivo(File archivo) {
         this.archivo = archivo;
     }
+    public void setSer(SeresVivos e){
+        listaSeres.add(e);
+    }
     
     public void cargarArchivo() {
         try {            
