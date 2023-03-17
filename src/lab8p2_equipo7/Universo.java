@@ -1,23 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lab8p2_equipo7;
 
-/**
- *
- * @author skxka
- */
+import java.util.ArrayList;
+
 public class Universo {
     private String nombre;
+    private ArrayList<SeresVivos> citizens = new ArrayList();
     private int cantSeres;
+   
 
     public Universo() {
     }
 
-    public Universo(String nombre, int cantSeres) {
+    public Universo(String nombre) {
         this.nombre = nombre;
         this.cantSeres = cantSeres;
+        cantSeres = citizens.size();
     }
 
     public String getNombre() {
