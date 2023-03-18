@@ -1,5 +1,7 @@
 package lab8p2_equipo7;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -19,6 +21,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         as.cargarArchivo();
+        au.cargarArchivo();
         this.setLocationRelativeTo(null);
 
     }
@@ -77,10 +80,20 @@ public class Main extends javax.swing.JFrame {
         JListElimSeres = new javax.swing.JList<>();
         jb_eliminarSerVivo = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
+        jd_eliminarUniverso = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        cb_idUniverso = new javax.swing.JComboBox<>();
+        BtnElimUniverso = new javax.swing.JButton();
+        DiaBarra = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        cb_barra = new javax.swing.JComboBox<>();
+        PBCargar = new javax.swing.JProgressBar();
+        BtnCargarUni = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        BtnCargar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         BtnModifVivo = new javax.swing.JButton();
@@ -433,6 +446,97 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel7.setBackground(new java.awt.Color(51, 0, 51));
+
+        cb_idUniverso.setModel(new DefaultComboBoxModel());
+
+        BtnElimUniverso.setText("Eliminar Universo");
+        BtnElimUniverso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnElimUniversoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnElimUniverso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_idUniverso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(cb_idUniverso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addComponent(BtnElimUniverso)
+                .addGap(77, 77, 77))
+        );
+
+        javax.swing.GroupLayout jd_eliminarUniversoLayout = new javax.swing.GroupLayout(jd_eliminarUniverso.getContentPane());
+        jd_eliminarUniverso.getContentPane().setLayout(jd_eliminarUniversoLayout);
+        jd_eliminarUniversoLayout.setHorizontalGroup(
+            jd_eliminarUniversoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_eliminarUniversoLayout.setVerticalGroup(
+            jd_eliminarUniversoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel8.setBackground(new java.awt.Color(51, 0, 51));
+
+        cb_barra.setModel(new DefaultComboBoxModel());
+
+        BtnCargarUni.setText("Cargar Universo");
+        BtnCargarUni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarUniActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(cb_barra, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnCargarUni, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PBCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCargarUni))
+                .addGap(65, 65, 65)
+                .addComponent(PBCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout DiaBarraLayout = new javax.swing.GroupLayout(DiaBarra.getContentPane());
+        DiaBarra.getContentPane().setLayout(DiaBarraLayout);
+        DiaBarraLayout.setHorizontalGroup(
+            DiaBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        DiaBarraLayout.setVerticalGroup(
+            DiaBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -447,21 +551,30 @@ public class Main extends javax.swing.JFrame {
         jButton2.setText("Modificar Universo");
 
         jButton3.setText("Eliminar Universo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        BtnCargar.setText("Cargar");
+        BtnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(98, 98, 98)
-                            .addComponent(jButton1))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(88, 88, 88)
-                            .addComponent(jButton2))))
+                .addGap(88, 88, 88)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnCargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -473,6 +586,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(47, 47, 47)
                 .addComponent(jButton3)
+                .addGap(27, 27, 27)
+                .addComponent(BtnCargar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -560,25 +675,23 @@ public class Main extends javax.swing.JFrame {
             jd_crearUniverso.dispose();
             jt_univName.setText("");
             int cantSeres = u.getCitizens().size();
-            
-            adminUniversos au = new adminUniversos("./Universo.uni");
-            au.cargarArchivo();
+
             au.setListaUniversos(universos);
             au.escribirArchivo();
-            
+
             //agregar
-       Dba db = new Dba("./Universos.accdb");
-        db.conectar();
-        try {
-            
-            db.query.execute("INSERT INTO Universos"
-                    + " (CantidadSeres,Universo)"
-                    + " VALUES ('" + cantSeres+ "', '" + u.getNombre()+ "')");
-            db.commit();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        db.desconectar();
+            Dba db = new Dba("./Universos.accdb");
+            db.conectar();
+            try {
+
+                db.query.execute("INSERT INTO Universos"
+                        + " (CantidadSeres,Universo)"
+                        + " VALUES ('" + cantSeres + "', '" + u.getNombre() + "')");
+                db.commit();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            db.desconectar();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -678,12 +791,51 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jb_eliminarSerVivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eliminarSerVivoActionPerformed
-        if(JListElimSeres.getSelectedIndex()>= 0){
+        if (JListElimSeres.getSelectedIndex() >= 0) {
             DefaultListModel modelo = new DefaultListModel();
-            as.getListaSeres().remove((SeresVivos)modelo.getElementAt(JListElimSeres.getSelectedIndex()));
+            as.getListaSeres().remove((SeresVivos) modelo.getElementAt(JListElimSeres.getSelectedIndex()));
             as.escribirArchivo();
         }
     }//GEN-LAST:event_jb_eliminarSerVivoActionPerformed
+
+    private void BtnElimUniversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnElimUniversoActionPerformed
+        au.getListaUniversos().remove(cb_idUniverso.getSelectedIndex());
+        
+        
+        
+        //eliminar
+        Dba db = new Dba("./Universos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("delete from Universos where Id=" + cb_idUniverso.getSelectedIndex() );
+            db.commit();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+        
+        
+        JOptionPane.showMessageDialog(this, "Universo eliminado correctamente");
+    }//GEN-LAST:event_BtnElimUniversoActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cb_idUniverso.setModel(llenarComboBoxID(au));
+        abrirElimUniversos();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void BtnCargarUniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarUniActionPerformed
+        
+        Universo uni = (Universo)cb_barra.getSelectedItem();
+        adminProgressBar aPB = new adminProgressBar(PBCargar, uni.getCitizens().size());
+        Thread process = new Thread(aPB);
+        process.start();
+        
+    }//GEN-LAST:event_BtnCargarUniActionPerformed
+
+    private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
+        cb_barra.setModel(llenarCBCargar(au));
+        abrirCargar();
+    }//GEN-LAST:event_BtnCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -719,7 +871,18 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
+    public void abrirCargar(){
+        DiaBarra.setModal(true);
+        DiaBarra.pack();
+        DiaBarra.setLocationRelativeTo(this);
+        DiaBarra.setVisible(true);
+    }
+    public void abrirElimUniversos(){
+        jd_eliminarUniverso.setModal(true);
+        jd_eliminarUniverso.pack();
+        jd_eliminarUniverso.setLocationRelativeTo(this);
+        jd_eliminarUniverso.setVisible(true);
+    }
     public void refreshComboBoxUniverso() {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jc_universos.getModel();
         modelo.removeAllElements();
@@ -747,10 +910,34 @@ public class Main extends javax.swing.JFrame {
         jc_universos1.setModel(modelo);
     }
 
+    public DefaultComboBoxModel llenarComboBoxID(adminUniversos a) {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Universo u : a.getListaUniversos()) {
+            modelo.addElement(a.getListaUniversos().indexOf(u));
+        }
+        jc_universos1.setModel(modelo);
+
+        return modelo;
+    }
+    
+    public DefaultComboBoxModel llenarCBCargar(adminUniversos a) {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Universo u : a.getListaUniversos()) {
+            modelo.addElement(u);
+        }
+        return modelo;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCargar;
+    private javax.swing.JButton BtnCargarUni;
+    private javax.swing.JButton BtnElimUniverso;
     private javax.swing.JButton BtnModifVivo;
+    private javax.swing.JDialog DiaBarra;
     private javax.swing.JTextField FieldBuscarElimSerVivo;
     private javax.swing.JList<String> JListElimSeres;
+    private javax.swing.JProgressBar PBCargar;
+    private javax.swing.JComboBox<String> cb_barra;
+    private javax.swing.JComboBox<String> cb_idUniverso;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -779,6 +966,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_crearSerVivo;
     private javax.swing.JButton jb_eliminarSerVivo;
@@ -789,6 +978,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_crearSerVivo;
     private javax.swing.JDialog jd_crearUniverso;
     private javax.swing.JDialog jd_eliminarSerVivo;
+    private javax.swing.JDialog jd_eliminarUniverso;
     private javax.swing.JDialog jd_modificarSerVivo;
     private javax.swing.JSpinner js_anios;
     private javax.swing.JSpinner js_anios1;
@@ -804,7 +994,7 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public ArrayList<Universo> universos = new ArrayList();
-
+    adminUniversos au = new adminUniversos("./Universo.uni");
     public adminSeres as = new adminSeres("./seres.sre");
 
 }

@@ -10,7 +10,8 @@ import javax.swing.JProgressBar;
  *
  * @author skxka
  */
-public class adminProgressBar extends Thread{
+public class adminProgressBar extends Thread {
+
     private JProgressBar barra;
     private int cantidad;
 
@@ -20,20 +21,22 @@ public class adminProgressBar extends Thread{
     public adminProgressBar(JProgressBar barra, int cantSegundos) {
         this.barra = barra;
         this.cantidad = cantSegundos;
+
     }
-    
-    
+
     @Override
-    public void run(){
-        barra.setValue(barra.getValue()+1);
-        if (barra.getValue() == barra.getMaximum()) {
-            barra.setValue(0);
-        }
-        
+    public void run() {
+        while (barra.getValue() <= barra.getMaximum()) {
+
+            barra.setValue(barra.getValue() + 1);
+            if (barra.getValue() == barra.getMaximum()) {
+            }
+        } //FIN IF
+
         try {
             int cooldown = cantidad * 1000;
             Thread.sleep(cooldown);
-        } catch(InterruptedException ex){   
+        } catch (InterruptedException ex) {
         }
     }
 }
