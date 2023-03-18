@@ -95,6 +95,13 @@ public class Main extends javax.swing.JFrame {
         BtnModUniverso1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jt_nuevoNombre = new javax.swing.JTextField();
+        DiaBusqueda = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        FieldNomBusqueda = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JListBusqueda = new javax.swing.JList<>();
+        cb_busqueda = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -104,6 +111,7 @@ public class Main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         BtnModifVivo = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        BtnBusqueda = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(51, 0, 51));
 
@@ -596,6 +604,65 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel10.setBackground(new java.awt.Color(51, 0, 153));
+
+        jLabel18.setText("Nombre del ser vivo");
+
+        FieldNomBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                FieldNomBusquedaKeyReleased(evt);
+            }
+        });
+
+        JListBusqueda.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(JListBusqueda);
+
+        cb_busqueda.setModel(new DefaultComboBoxModel());
+        cb_busqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_busquedaItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(FieldNomBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(cb_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(cb_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
+                .addComponent(FieldNomBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
+        javax.swing.GroupLayout DiaBusquedaLayout = new javax.swing.GroupLayout(DiaBusqueda.getContentPane());
+        DiaBusqueda.getContentPane().setLayout(DiaBusquedaLayout);
+        DiaBusquedaLayout.setHorizontalGroup(
+            DiaBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        DiaBusquedaLayout.setVerticalGroup(
+            DiaBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -652,7 +719,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(27, 27, 27)
                 .addComponent(BtnCargar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 0, 153));
@@ -678,20 +745,24 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        BtnBusqueda.setText("Busqueda");
+        BtnBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBusquedaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton6)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(98, 98, 98)
-                            .addComponent(jButton4))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(88, 88, 88)
-                            .addComponent(BtnModifVivo))))
+                .addGap(88, 88, 88)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(BtnModifVivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -703,7 +774,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(BtnModifVivo)
                 .addGap(53, 53, 53)
                 .addComponent(jButton6)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(BtnBusqueda)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -739,7 +812,7 @@ public class Main extends javax.swing.JFrame {
             jd_crearUniverso.dispose();
             jt_univName.setText("");
             int cantSeres = u.getCitizens().size();
-
+            
             au.setListaUniversos(universos);
             au.escribirArchivo();
 
@@ -780,9 +853,9 @@ public class Main extends javax.swing.JFrame {
                 (Integer) js_poder.getValue(), (Integer) js_anios.getValue(), uni);
         as.getListaSeres().add(sv);
         u.getCitizens().add(sv);
-        JOptionPane.showMessageDialog(jd_crearUniverso, "Universo creado exitosamente");
+        JOptionPane.showMessageDialog(jd_crearUniverso, "Ser vivo creado exitosamente");
         jd_crearUniverso.dispose();
-
+        au.escribirArchivo();
 //        as.setListaSeres(as.getListaSeres());
         //as.setSer(sv);
         as.escribirArchivo();
@@ -868,16 +941,27 @@ public class Main extends javax.swing.JFrame {
         
         
         //eliminar
-        Dba db = new Dba("./Universos.accdb");
-        db.conectar();
+//        Dba db = new Dba("./Universos.accdb");
+//        db.conectar();
+//        try {
+//            db.query.execute("delete from Universos where Id=" + cb_idUniverso.getSelectedIndex() );
+//            db.commit();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        db.desconectar();
+        Universo u = (Universo)cb_idUniverso.getSelectedItem();
+       universos.remove(u);
+       au.getListaUniversos().remove(u);
+       au.escribirArchivo();
+       Dba db = new Dba("./Universos.accdb");
+       db.conectar();
         try {
-            db.query.execute("delete from Universos where Id=" + cb_idUniverso.getSelectedIndex() );
+            db.query.execute("delete from Universos where Id=" + (cb_idUniverso.getSelectedIndex()+1));
             db.commit();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
         }
         db.desconectar();
-        
         
         JOptionPane.showMessageDialog(this, "Universo eliminado correctamente");
     }//GEN-LAST:event_BtnElimUniversoActionPerformed
@@ -917,13 +1001,38 @@ public class Main extends javax.swing.JFrame {
         Dba db = new Dba("./Universos.accdb");
         db.conectar();
         try {
-            db.query.execute("update Universos set Nombre" + jt_nuevoNombre.getText() + "where Id" + (cb_idUniverso1.getSelectedIndex()+1));
+            db.query.execute("update Universos set Nombre" 
+                    + jt_nuevoNombre.getText() 
+                    + "where Id=" + (cb_idUniverso1.getSelectedIndex()+1));
             db.commit();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         db.desconectar();
     }//GEN-LAST:event_BtnModUniverso1ActionPerformed
+
+    private void BtnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBusquedaActionPerformed
+         cb_busqueda.setModel(llenarCBCargar(au));
+        abrirBusqueda();
+       
+    }//GEN-LAST:event_BtnBusquedaActionPerformed
+
+    private void FieldNomBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldNomBusquedaKeyReleased
+        Universo uni = (Universo) cb_busqueda.getSelectedItem();
+        DefaultListModel modelo = new DefaultListModel();
+        for (SeresVivos o : uni.getCitizens() ) {
+            if (o.getNombre().startsWith(FieldNomBusqueda.getText())) {
+                modelo.addElement(o);
+            } else if (o.getID().startsWith(FieldNomBusqueda.getText())) {
+                modelo.addElement(o.getID());
+            }
+        }
+        JListBusqueda.setModel(modelo);
+    }//GEN-LAST:event_FieldNomBusquedaKeyReleased
+
+    private void cb_busquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_busquedaItemStateChanged
+       
+    }//GEN-LAST:event_cb_busquedaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -958,6 +1067,12 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
+    }
+    public void abrirBusqueda(){
+        DiaBusqueda.setModal(true);
+        DiaBusqueda.pack();
+        DiaBusqueda.setLocationRelativeTo(this);
+        DiaBusqueda.setVisible(true);
     }
     public void abrirCargar(){
         DiaBarra.setModal(true);
@@ -1001,7 +1116,7 @@ public class Main extends javax.swing.JFrame {
     public DefaultComboBoxModel llenarComboBoxID(adminUniversos a) {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Universo u : a.getListaUniversos()) {
-            modelo.addElement(a.getListaUniversos().indexOf(u));
+            modelo.addElement(u);
         }
         jc_universos1.setModel(modelo);
 
@@ -1018,16 +1133,21 @@ public class Main extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBusqueda;
     private javax.swing.JButton BtnCargar;
     private javax.swing.JButton BtnCargarUni;
     private javax.swing.JButton BtnElimUniverso;
     private javax.swing.JButton BtnModUniverso1;
     private javax.swing.JButton BtnModifVivo;
     private javax.swing.JDialog DiaBarra;
+    private javax.swing.JDialog DiaBusqueda;
     private javax.swing.JTextField FieldBuscarElimSerVivo;
+    private javax.swing.JTextField FieldNomBusqueda;
+    private javax.swing.JList<String> JListBusqueda;
     private javax.swing.JList<String> JListElimSeres;
     private javax.swing.JProgressBar PBCargar;
     private javax.swing.JComboBox<String> cb_barra;
+    private javax.swing.JComboBox<String> cb_busqueda;
     private javax.swing.JComboBox<String> cb_idUniverso;
     private javax.swing.JComboBox<String> cb_idUniverso1;
     private javax.swing.JButton jButton1;
@@ -1045,6 +1165,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1054,6 +1175,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1063,6 +1185,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jb_crearSerVivo;
     private javax.swing.JButton jb_eliminarSerVivo;
     private javax.swing.JButton jb_modificarSerVivo;
