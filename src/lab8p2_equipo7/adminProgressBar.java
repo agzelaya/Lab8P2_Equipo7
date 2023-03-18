@@ -30,8 +30,8 @@ public class adminProgressBar extends Thread {
 
             barra.setValue(barra.getValue() + 1);
             
-        } //FIN IF
-
+        } //FIN WHILE
+        barra.setValue(0);
         try {
             int cooldown = cantidad * 1000;
             Thread.sleep(cooldown);

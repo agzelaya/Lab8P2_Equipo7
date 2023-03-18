@@ -618,11 +618,6 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2.setViewportView(JListBusqueda);
 
         cb_busqueda.setModel(new DefaultComboBoxModel());
-        cb_busqueda.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_busquedaItemStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -833,7 +828,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (universos.isEmpty()) {
+        if (au.getListaUniversos().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No existen universos para añadir seres vivos");
         } else {
             refreshComboBoxUniverso();
@@ -857,7 +852,7 @@ public class Main extends javax.swing.JFrame {
         jd_crearUniverso.dispose();
         au.escribirArchivo();
 //        as.setListaSeres(as.getListaSeres());
-        //as.setSer(sv);
+        as.setSer(sv);
         as.escribirArchivo();
 
         jt_nombreSer.setText("");
@@ -1029,10 +1024,6 @@ public class Main extends javax.swing.JFrame {
         }
         JListBusqueda.setModel(modelo);
     }//GEN-LAST:event_FieldNomBusquedaKeyReleased
-
-    private void cb_busquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_busquedaItemStateChanged
-       
-    }//GEN-LAST:event_cb_busquedaItemStateChanged
 
     /**
      * @param args the command line arguments
