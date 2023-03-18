@@ -21,7 +21,7 @@ public class adminProgressBar extends Thread {
     public adminProgressBar(JProgressBar barra, int cantSegundos) {
         this.barra = barra;
         this.cantidad = cantSegundos;
-
+        barra.setMaximum(cantidad);
     }
 
     @Override
@@ -29,8 +29,7 @@ public class adminProgressBar extends Thread {
         while (barra.getValue() <= barra.getMaximum()) {
 
             barra.setValue(barra.getValue() + 1);
-            if (barra.getValue() == barra.getMaximum()) {
-            }
+            
         } //FIN IF
 
         try {

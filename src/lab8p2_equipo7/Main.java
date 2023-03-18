@@ -89,6 +89,12 @@ public class Main extends javax.swing.JFrame {
         cb_barra = new javax.swing.JComboBox<>();
         PBCargar = new javax.swing.JProgressBar();
         BtnCargarUni = new javax.swing.JButton();
+        jd_modUniverso = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        cb_idUniverso1 = new javax.swing.JComboBox<>();
+        BtnModUniverso1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jt_nuevoNombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -537,6 +543,59 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel9.setBackground(new java.awt.Color(51, 0, 51));
+
+        cb_idUniverso1.setModel(new DefaultComboBoxModel());
+
+        BtnModUniverso1.setText("Modificar Universo");
+        BtnModUniverso1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModUniverso1ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Ingrese el nuevo nombre");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BtnModUniverso1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_idUniverso1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jt_nuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(cb_idUniverso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel17)
+                .addGap(32, 32, 32)
+                .addComponent(jt_nuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(BtnModUniverso1)
+                .addGap(77, 77, 77))
+        );
+
+        javax.swing.GroupLayout jd_modUniversoLayout = new javax.swing.GroupLayout(jd_modUniverso.getContentPane());
+        jd_modUniverso.getContentPane().setLayout(jd_modUniversoLayout);
+        jd_modUniversoLayout.setHorizontalGroup(
+            jd_modUniversoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_modUniversoLayout.setVerticalGroup(
+            jd_modUniversoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -549,6 +608,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton2.setText("Modificar Universo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar Universo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -837,6 +901,30 @@ public class Main extends javax.swing.JFrame {
         abrirCargar();
     }//GEN-LAST:event_BtnCargarActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cb_idUniverso1.setModel(llenarCBCargar(au));
+        jd_modUniverso.setModal(true);
+        jd_modUniverso.pack();
+        jd_modUniverso.setLocationRelativeTo(this);
+        jd_modUniverso.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BtnModUniverso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModUniverso1ActionPerformed
+        Universo u = (Universo)cb_idUniverso1.getSelectedItem();
+        u.setNombre(jt_nuevoNombre.getText());
+        Dba db = new Dba("./Universos.accdb");
+        db.conectar();
+        try {
+            db.query.execute("update Universos set Nombre" + jt_nuevoNombre.getText() + "where Id" + (cb_idUniverso1.getSelectedIndex()+1));
+            db.commit();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+    }//GEN-LAST:event_BtnModUniverso1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -927,10 +1015,13 @@ public class Main extends javax.swing.JFrame {
         }
         return modelo;
     }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCargar;
     private javax.swing.JButton BtnCargarUni;
     private javax.swing.JButton BtnElimUniverso;
+    private javax.swing.JButton BtnModUniverso1;
     private javax.swing.JButton BtnModifVivo;
     private javax.swing.JDialog DiaBarra;
     private javax.swing.JTextField FieldBuscarElimSerVivo;
@@ -938,6 +1029,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JProgressBar PBCargar;
     private javax.swing.JComboBox<String> cb_barra;
     private javax.swing.JComboBox<String> cb_idUniverso;
+    private javax.swing.JComboBox<String> cb_idUniverso1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -952,6 +1044,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -968,6 +1061,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_crearSerVivo;
     private javax.swing.JButton jb_eliminarSerVivo;
@@ -979,6 +1073,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_crearUniverso;
     private javax.swing.JDialog jd_eliminarSerVivo;
     private javax.swing.JDialog jd_eliminarUniverso;
+    private javax.swing.JDialog jd_modUniverso;
     private javax.swing.JDialog jd_modificarSerVivo;
     private javax.swing.JSpinner js_anios;
     private javax.swing.JSpinner js_anios1;
@@ -988,6 +1083,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jt_IDSer1;
     private javax.swing.JTextField jt_nombreSer;
     private javax.swing.JTextField jt_nombreSer1;
+    private javax.swing.JTextField jt_nuevoNombre;
     private javax.swing.JTextField jt_raza;
     private javax.swing.JTextField jt_raza1;
     private javax.swing.JTextField jt_univName;
